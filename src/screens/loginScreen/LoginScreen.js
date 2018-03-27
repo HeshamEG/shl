@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View,Animated,Picker, Text, Button, TextInput, StyleSheet,ImageBackground } from "react-native";
+import { View,ScrollView,Animated,Picker, Text, Button, TextInput, StyleSheet,ImageBackground,Dimensions } from "react-native";
 import {Card,Image,CardSection,CardButton} from "./../../components/commonUI"
 import backgroundImage from "./../../assets/backgroundImage.png"
 import shlUncolored from "./../../assets/shlUncolored.png";
@@ -13,30 +13,33 @@ import buttonImage from "./../../assets/buttonBG.png";
    updateUser = user => {
      this.setState({ user: user });
    };
-  //  componentDidMount() {
-  //    Animated.timing(
-  //      // Animate over time
-  //      this.state.fadeAnim, // The animated value to drive
-  //      {
-  //        toValue: 1, // Animate to opacity: 1 (opaque)
-  //        duration: 10000 // Make it take a while
-  //      }
-  //    ).start(); // Starts the animation
-  //  }
+ 
    constructor(props) {
      super(props);
    }
 
    render() {
+     let headingLogo=null
       //  let { fadeAnim } = this.state;
-     return <ImageBackground source={backgroundImage} style={styles.imageBackground}>
+if(Dimensions.get("window".width)>500){
+headingLogo=(
+  <View style={[styles.cardheader]}>
+  <ImageBackground style={[{flex:1}]} source={shlUncolored} />
+</View>
+);
+}
+      return      <ImageBackground source={backgroundImage} style={styles.imageBackground}>
          {/* <Card> */}
-         <View style={[styles.smallSpace]} />
-         <ImageBackground style={[styles.cardheader, { width: "23%" }]} source={shlUncolored} />
-         <View style={[styles.smallSpace]} />
+{headingLogo}
+<View style={styles.scrollContainer}>
+        {/* <View style={[styles.smallSpace]} />
+       <ImageBackground style={[styles.cardheader, { width: "21%" }]} source={shlUncolored} />
+   {/*<View style={[styles.smallSpace]} />*/}
 
          <CardSection style={[styles.cardsection]}>
            <View style={styles.cardhead}>
+
+
              <Text style={[styles.textStyle]}>ادخل رقم الجوال</Text>
              <Text style={[styles.textHintStyle]}>
                يجب تسجيل الدخول حتي تستطيع الاستفادة من
@@ -66,8 +69,11 @@ import buttonImage from "./../../assets/buttonBG.png";
          </CardSection>
 
          <View style={[styles.card]} />
-       </ImageBackground>;
-   }
+         </View>
+
+       </ImageBackground>
+
+      }
  }
 
 
@@ -95,13 +101,13 @@ const styles = StyleSheet.create({
     borderWidth: 0,
     flex: 4,
     width: "100%",
-    height: "100%"
+    // height: "100%"
   },
   cardheader: {
-    flex: 4,
+    flex: 0.20,
 // padding: -20,
 marginHorizontal: '20%',
-    // width: "100%"
+    width: "20%"
   },
   smallSpace:{
     flex:1
@@ -127,8 +133,15 @@ marginHorizontal: '20%',
 
   imageBackground: {
     flex: 1,
+    // width:'100%',
+    // height:'100%',
     alignItems: "center",
-    justifyContent: "center"
+    // justifyContent: "center"
+  },
+  scrollContainer: {
+    flex: 1,
+    // alignItems: "center",
+    // justifyContent: "center"
   },
   pickerAndInputSection: {
     flexDirection: "row",

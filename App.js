@@ -15,10 +15,7 @@ import { Navigation } from "react-native-navigation";
 import { Provider } from "react-redux";
 import LoginScreen from "./src/screens/loginScreen/LoginScreen";
 import { registerScreens } from './src/screens';
-
 registerScreens(); // this is where you register all of your app's screens
-
-
 // Start a App
 Navigation.startSingleScreenApp({
   screen: {
