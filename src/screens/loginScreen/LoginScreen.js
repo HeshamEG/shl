@@ -16,15 +16,29 @@ import buttonImage from "./../../assets/buttonBG.png";
  
    constructor(props) {
      super(props);
+     Dimensions.addEventListener("change",(dims)=>{
+console.log(dims)
+     })
    }
 
    render() {
      let headingLogo=null
+     let hintText=null
       //  let { fadeAnim } = this.state;
-if(Dimensions.get("window".width)>500){
+if(Dimensions.get("window").height>500){
 headingLogo=(
   <View style={[styles.cardheader]}>
   <ImageBackground style={[{flex:1}]} source={shlUncolored} />
+</View>
+);
+hintText=(
+  <View style={styles.cardhead}>
+
+
+  <Text style={[styles.textHintStyle]}>
+    يجب تسجيل الدخول حتي تستطيع الاستفادة من
+  </Text>
+  <Text> تطبيق سهل</Text>
 </View>
 );
 }
@@ -37,15 +51,9 @@ headingLogo=(
    {/*<View style={[styles.smallSpace]} />*/}
 
          <CardSection style={[styles.cardsection]}>
-           <View style={styles.cardhead}>
+         <Text style={[styles.textStyle]}>ادخل رقم الجوال</Text>
 
-
-             <Text style={[styles.textStyle]}>ادخل رقم الجوال</Text>
-             <Text style={[styles.textHintStyle]}>
-               يجب تسجيل الدخول حتي تستطيع الاستفادة من
-             </Text>
-             <Text> تطبيق سهل</Text>
-           </View>
+        {hintText}
 
            <View style={[styles.pickerAndInputSection]}>
              <View style={{ flexDirection: "column", flex: 3 }}>
@@ -127,8 +135,8 @@ marginHorizontal: '20%',
     justifyContent: "center",
     flex: 7,
     flexDirection: "column",
-    width: "95%"
-    // height: "40%"
+    width: "95%",
+    height: "100%"
   },
 
   imageBackground: {
